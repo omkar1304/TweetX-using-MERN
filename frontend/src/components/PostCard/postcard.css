@@ -1,0 +1,133 @@
+.post-card--section {
+  margin-block: 4rem;
+  padding: 2rem 3rem;
+  max-width: 85rem;
+  position: relative;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  gap: 1.5rem;
+  border-radius: 2rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  overflow: hidden;
+}
+
+.post-card--section::after {
+  content: "";
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  background-color: var(--main-color);
+  top: 50%;
+  right: 0;
+  border-radius: 50% 0 0 50%;
+  transform: translateX(50%);
+}
+
+.post-card--image {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  border: 0.05rem solid var(--text-auth-heading);
+}
+
+.post-card--image::selection {
+  background-color: transparent;
+}
+
+.post-card-detail {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 0.5rem;
+}
+
+.post-card-detail h3 {
+  padding: 1.5rem 0.5rem 0rem 0.5rem;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--text-bold-color);
+}
+
+.post-card-detail h3::selection {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.post-card-detail h5 {
+  align-self: end;
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary-color);
+}
+
+.post-card-detail h5::selection {
+  background-color: var(--secondary-main-color);
+  color: white;
+}
+
+.post-card--content {
+  padding-right: 2rem;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text-primary-color);
+  text-align: start;
+}
+
+.post-card--content::selection {
+  background-color: var(--secondary-main-color);
+  color: white;
+}
+
+@media screen and (max-width: 768px) {
+  .post-card--section {
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .post-card--image {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .post-card-detail {
+    gap: 0.1rem;
+  }
+  .post-card-detail h3 {
+    padding: 0.5rem 0rem;
+    font-size: 1.5rem;
+  }
+  .post-card-detail h5 {
+    align-self: end;
+    padding-right: 1.5rem;
+  }
+  .post-card--content {
+    padding-right: 2rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--text-primary-color);
+    text-align: start;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .post-card--section {
+    margin-block: 4rem;
+    padding: 1.7rem 2rem;
+    max-width: 85rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    gap: 1.5rem;
+    border-radius: 2rem;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    overflow: hidden;
+  }
+  .post-card-detail h5 {
+    align-self: start;
+  }
+}

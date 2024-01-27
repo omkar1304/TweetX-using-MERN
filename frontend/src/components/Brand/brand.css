@@ -1,0 +1,35 @@
+.brand-name {
+  width: fit-content;
+  font-size: 3rem;
+  font-weight: 500;
+  color: var(--main-color);
+  cursor: pointer;
+}
+
+.brand-name::selection {
+  background-color: transparent;
+}
+
+.brand-logo {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: none;
+  cursor: pointer;
+}
+
+/* for medium devices */
+@media screen and (max-width: 768px) {
+  .brand-name {
+    font-size: 2.5rem;
+  }
+}
+
+/* for small devices */
+@media screen and (max-width: 480px) {
+  .brand-name {
+    display: none;
+  }
+  .brand-logo {
+    display: block;
+  }
+}

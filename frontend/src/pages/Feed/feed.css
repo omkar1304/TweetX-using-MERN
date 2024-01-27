@@ -1,0 +1,102 @@
+.feed-section {
+  margin: 10rem 0rem;
+  padding-inline: 18rem;
+}
+
+.custom-main-button-class {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.no-post-section {
+  gap: 3rem;
+}
+
+.no-post--img {
+  width: 45rem;
+  height: 32rem;
+}
+
+.no-post--text {
+  padding: 5rem;
+  text-align: center;
+  color: var(--main-color);
+  font-size: 2rem;
+  font-weight: 500;
+  gap: 1rem;
+}
+
+.no-post--text::selection {
+  background-color: var(--secondary-main-color);
+  color: white;
+}
+.no-post--icon {
+  font-size: 3rem;
+}
+
+/* for small laptops */
+@media screen and (max-width: 1025px) {
+  .feed-section {
+    padding-inline: 12rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .feed-section {
+    padding-inline: 8rem;
+  }
+  .no-post-section {
+    gap: 2.5rem;
+  }
+  .no-post--img {
+    width: 40rem;
+    height: 29rem;
+  }
+
+  .no-post--text {
+    padding: 3rem;
+    font-size: 1.5rem;
+    gap: 0.5rem;
+  }
+  .no-post--icon {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .feed-section {
+    padding-inline: 6rem;
+  }
+
+  .no-post--img {
+    width: 35rem;
+    height: 25rem;
+  }
+
+  .no-post--text {
+    padding: 2rem;
+    font-size: 1.3rem;
+    text-align: start;
+    gap: 0.3rem;
+  }
+  .no-post--icon {
+    font-size: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .feed-section {
+    padding-inline: 4rem;
+  }
+  .no-post--img {
+    width: 30rem;
+    height: 23rem;
+  }
+  .no-post--text {
+    padding: 0.5rem;
+    font-size: 1rem;
+    text-align: start;
+  }
+}
