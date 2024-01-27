@@ -37,7 +37,7 @@ const Feed = () => {
     window.addEventListener("scroll", handleScroll);
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [page]);
+  }, [page, isModalOpen]);
 
   useEffect(() => {
     setPosts((prevPosts) => [...prevPosts, ...(newPosts || [])]);

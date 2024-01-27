@@ -20,7 +20,7 @@
   width: 7rem;
   height: 7rem;
   border-radius: 50%;
-  border: 0.05rem solid var(--text-auth-heading);
+  border: 0.05rem solid var(--main-color);
 }
 
 .user-details--username {

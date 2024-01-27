@@ -9,7 +9,7 @@ import Loader from "../Loader/Loader";
 
 import CustomToaster from "../CustomToaster/CustomToaster";
 
-const CreatePostModal = ({ onCloseModal }) => {
+const CreatePostModal = ({ onCloseModal, setPosts }) => {
   const outerRef = useRef(null);
   const [content, setContent] = useState("");
   const [createPost, { isLoading }] = useCreatePostMutation();

@@ -1,8 +1,13 @@
 import './profile.css'
+import ProfileCard from '../../components/ProfileCard.jsx/ProfileCard'
 
 const Profile = () => {
   return (
-    <div>Profile</div>
+    <div className='container'>
+      <div className='profile-section flex-column-center scale-up-center'>
+        <ProfileCard />
+      </div>
+    </div>
   )
 }
 
