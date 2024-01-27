@@ -123,11 +123,11 @@ const getPostById = asyncHandler(async (req, res) => {
 
 const getAllPostsFromFollowing = asyncHandler(async (req, res) => {
   const { _id: userId } = req.user;
-  // const page = req.query.page || 1;
+  const page = req.query.page || 1;
 
-  // const DEFAULT_LIMIT = 4;
-  // const skipPosts = (page - 1) * DEFAULT_LIMIT;
-  // console.log(skipPosts)
+  const DEFAULT_LIMIT = 4;
+  const skipPosts = (page - 1) * DEFAULT_LIMIT;
+
 
   try {
     const currentUser = await User.findById(userId).select("-password");
@@ -138,8 +138,10 @@ const getAllPostsFromFollowing = asyncHandler(async (req, res) => {
     const userIds = [userId, ...currentUser.following];
 
     const posts = await Post.find({ user: { $in: userIds } })
-      .populate("user")
       .sort({ updatedAt: -1 })
+      .skip(skipPosts)
+      .limit(DEFAULT_LIMIT)
+      .populate("user")
 
     return res.status(200).json(posts);
   } catch (error) {

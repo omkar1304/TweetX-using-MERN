@@ -77,9 +77,16 @@ const logoutUser = asyncHandler(async (req, res) => {
 
 const getAllUsers = asyncHandler(async (req, res) => {
   const { _id: userId } = req.user;
+  const page = req.query.page || 1;
+
+  const DEFAULT_LIMIT = 5;
+  const skipPosts = (page - 1) * DEFAULT_LIMIT;
 
   try {
-    const users = await User.find({ _id: { $ne: userId } }).select("-password");
+    const users = await User.find({ _id: { $ne: userId } })
+      .select("-password")
+      .skip(skipPosts)
+      .limit(DEFAULT_LIMIT);
     res.status(200).json(users);
   } catch (error) {
     res.status(400);
@@ -101,7 +108,7 @@ const getUserById = asyncHandler(async (req, res) => {
 
 const userFollow = asyncHandler(async (req, res) => {
   const { followingId } = req.params;
-  console.log(followingId)
+  console.log(followingId);
   const { _id: userId } = req.user;
 
   const followingUser = await User.findById(followingId);

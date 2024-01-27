@@ -41,7 +41,7 @@ export const postApiSlice = apiSlice.injectEndpoints({
 
     getAllPostsFromFollowing: builder.query({
       query: (page) => ({
-        url: `${POST_URL}/followingposts`,
+        url: `${POST_URL}/followingposts?page=${page}`,
       }),
       providesTags: ["followingPosts"],
     }),
