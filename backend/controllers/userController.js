@@ -101,6 +101,7 @@ const getUserById = asyncHandler(async (req, res) => {
 
 const userFollow = asyncHandler(async (req, res) => {
   const { followingId } = req.params;
+  console.log(followingId)
   const { _id: userId } = req.user;
 
   const followingUser = await User.findById(followingId);

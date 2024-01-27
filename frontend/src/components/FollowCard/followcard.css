@@ -1,0 +1,140 @@
+.follow-card {
+  padding: 1.5rem;
+  width: 50%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 2rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.user-details--section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.profile-image {
+  margin-block: 2rem;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 50%;
+  border: 0.05rem solid var(--text-auth-heading);
+}
+
+.user-details--username {
+  font-size: 2rem;
+  font-weight: 500;
+  color: var(--text-bold-color);
+}
+
+.user-details--username::selection {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.follow-section {
+  margin-block: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-details--following,
+.user-details--followers {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-primary-color);
+}
+
+:is(.user-details--following, .user-details--followers)::selection {
+  background-color: var(--secondary-main-color);
+  color: white;
+}
+
+.toggle-button {
+  padding: 1rem 4rem;
+  width: 10rem;
+  height: 5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border-radius: 0.7rem;
+  cursor: pointer;
+}
+
+.toggle-button::selection{
+  background-color: transparent;
+}
+
+.follow-button {
+  color: #ffffff;
+  background-color: var(--main-color);
+  border: none;
+}
+
+.follow-button:hover {
+  background-color: var(--main-button-hover);
+}
+
+.unfollow-button {
+  color: var(--main-color);
+  background-color: #ffffff;
+  border: 0.1rem dotted var(--main-color);
+}
+
+.unfollow-button:hover {
+  background-color: var(--soft-main-color);
+}
+
+/* For smaller laptops */
+@media screen and (max-width: 1025px) {
+  .follow-card {
+    padding: 1.4rem;
+    width: 60%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .follow-card {
+    padding: 1.4rem;
+    width: 80%;
+  }
+  .user-details--section {
+    gap: 2.3rem;
+  }
+  .profile-image {
+    margin-block: 1.5rem;
+    width: 6.5rem;
+    height: 6.5rem;
+  }
+  .user-details--username {
+    margin-top: 1.5rem;
+    font-size: 1.9rem;
+  }
+  .toggle-button {
+    padding: 1rem 3rem;
+    width: 8rem;
+    height: 5rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .follow-card {
+    padding: 1.4rem;
+    width: 95%;
+  }
+  .follow-section {
+    margin-block: 1rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .toggle-button {
+    padding: 1rem 2rem;
+    width: 7rem;
+    height: 4.5rem;
+    font-size: 1.1rem;
+  }
+}

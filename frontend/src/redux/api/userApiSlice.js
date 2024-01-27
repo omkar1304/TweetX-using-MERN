@@ -31,6 +31,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: `${USER_URL}`,
         credentials: "include",
       }),
+      providesTags: ["users"],
     }),
 
     getUserById: builder.query({
@@ -42,15 +43,17 @@ export const userApiSlice = apiSlice.injectEndpoints({
     userFollow: builder.mutation({
       query: (followingId) => ({
         url: `${USER_URL}/follow/${followingId}`,
-        method: "POST",
+        method: "PUT",
       }),
+      invalidatesTags: ["users"],
     }),
 
     userUnfollow: builder.mutation({
       query: (unfollowingId) => ({
         url: `${USER_URL}/unfollow/${unfollowingId}`,
-        method: "POST",
+        method: "PUT",
       }),
+      invalidatesTags: ["users"],
     }),
   }),
 });

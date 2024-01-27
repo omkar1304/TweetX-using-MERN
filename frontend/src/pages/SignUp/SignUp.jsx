@@ -12,6 +12,7 @@ import { useRegisterMutation } from "../../redux/api/userApiSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../../redux/features/authSlice";
 import CustomToaster from "../../components/CustomToaster/CustomToaster";
+import capitalizeName from "../../utils/capitalizeName";
 
 const SignUp = () => {
   const [data, setData] = useState({
@@ -45,6 +46,8 @@ const SignUp = () => {
       toast.error("Passwords do not match");
       return null;
     }
+
+    data.name = capitalizeName(data.name)
 
     try {
       const res = await register(data).unwrap();

@@ -3,7 +3,7 @@ import { BASE_URL } from "../constants";
 
 export const apiSlice = createApi({
   reducerPath: "api",
-  tagTypes: ["followingPosts"],
+  tagTypes: ["followingPosts", "users"],
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
   }),

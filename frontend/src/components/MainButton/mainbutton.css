@@ -1,9 +1,9 @@
 .main-button{
     width: 11rem;
+    padding: 1rem 2.4rem;
     height: 5rem;
     font-size: 1.3rem;
     font-weight: 600;
-    padding: 1rem 2.4rem;
     background-color: var(--main-color);
     color: #FFFFFF;
     border: none;
