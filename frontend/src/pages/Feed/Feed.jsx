@@ -14,34 +14,12 @@ import CustomToaster from "../../components/CustomToaster/CustomToaster";
 const Feed = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [posts, setPosts] = useState([]);
-  const [page, setPage] = useState(1);
-
   const {
-    data: newPosts,
+    data: posts,
     isLoading,
     refetch,
-  } = useGetAllPostsFromFollowingQuery(page);
+  } = useGetAllPostsFromFollowingQuery();
 
-  useEffect(() => {
-    const handleScroll = (e) => {
-      const scrollHeight = e.target.documentElement.scrollHeight;
-      const innerHeight = window.innerHeight;
-      const scrollTop = e.target.documentElement.scrollTop;
-
-      if (innerHeight + scrollTop >= scrollHeight) {
-        setPage((prevPage) => prevPage + 1);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [page, isModalOpen]);
-
-  useEffect(() => {
-    setPosts((prevPosts) => [...prevPosts, ...(newPosts || [])]);
-  }, [newPosts]);
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
