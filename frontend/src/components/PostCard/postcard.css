@@ -115,17 +115,9 @@
 
 @media screen and (max-width: 480px) {
   .post-card--section {
-    margin-block: 4rem;
+    margin-block: 3rem;
     padding: 1.7rem 2rem;
-    max-width: 85rem;
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    gap: 1.5rem;
-    border-radius: 2rem;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    overflow: hidden;
+   
   }
   .post-card-detail h5 {
     align-self: start;

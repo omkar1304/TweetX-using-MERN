@@ -67,7 +67,7 @@
 
 @media screen and (max-width: 580px) {
   .feed-section {
-    padding-inline: 6rem;
+    padding-inline: 5rem;
   }
 
   .no-post--img {
@@ -88,7 +88,7 @@
 
 @media screen and (max-width: 480px) {
   .feed-section {
-    padding-inline: 4rem;
+    padding-inline: 1.5rem;
   }
   .no-post--img {
     width: 30rem;

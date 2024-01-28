@@ -7,11 +7,13 @@ import { FaUsers } from "react-icons/fa";
 import { HiUserCircle } from "react-icons/hi";
 
 import { NavLink, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const NavigationBar = () => {
   const [active, setActive] = useState("/");
   const location = useLocation();
   const { pathname } = location;
+  const { userInfo } = useSelector((store) => store.auth)
 
   return (
     <>
@@ -31,8 +33,8 @@ const NavigationBar = () => {
               Users
             </NavLink>
             <NavLink
-              to="/profile"
-              id={pathname === "/profile" ? "active-link" : ""}
+              to={`/profile/${userInfo._id}`}
+              id={pathname.includes("/profile") ? "active-link" : ""}
             >
               Profile
             </NavLink>
@@ -46,7 +48,7 @@ const NavigationBar = () => {
         <NavLink to="/users" id={pathname === "/users" ? "active-icon" : ""}>
           <FaUsers size={25} />
         </NavLink>
-        <NavLink to="/profile" id={pathname === "/profile" ? "active-icon" : ""}>
+        <NavLink to={`/profile/${userInfo._id}`} id={pathname.includes("/profile") ? "active-icon" : ""}>
           <HiUserCircle size={25} />
         </NavLink>
       </ul>

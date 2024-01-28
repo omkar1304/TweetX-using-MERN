@@ -16,7 +16,7 @@ function App() {
         <Route path="/" element={<PrivateRoute />}>
           <Route index path="/" element={<Feed />} />
           <Route path="/users" element={<Users />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/:profileId" element={<Profile />} />
         </Route>
         <Route path="/register" element={<SignUp />} />
         <Route path="/login" element={<SignIn />} />

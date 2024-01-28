@@ -38,6 +38,27 @@ export const userApiSlice = apiSlice.injectEndpoints({
       query: (userId) => ({
         url: `${USER_URL}/${userId}`,
       }),
+      providesTags: ["getUserById"],
+    }),
+
+    getProfilePosts: builder.query({
+      query: (profileId) => ({
+        url: `${USER_URL}/posts/${profileId}`,
+      }),
+    }),
+
+    getProfileFollowers: builder.query({
+      query: (profileId) => ({
+        url: `${USER_URL}/followers/${profileId}`,
+      }),
+      providesTags: ["profileFollowers"],
+    }),
+
+    getProfileFollowing: builder.query({
+      query: (profileId) => ({
+        url: `${USER_URL}/following/${profileId}`,
+      }),
+      providesTags: ["profileFollowing"],
     }),
 
     userFollow: builder.mutation({
@@ -45,7 +66,12 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: `${USER_URL}/follow/${followingId}`,
         method: "PUT",
       }),
-      invalidatesTags: ["users"],
+      invalidatesTags: [
+        "users",
+        "profileFollowers",
+        "profileFollowing",
+        "getUserById",
+      ],
     }),
 
     userUnfollow: builder.mutation({
@@ -53,7 +79,12 @@ export const userApiSlice = apiSlice.injectEndpoints({
         url: `${USER_URL}/unfollow/${unfollowingId}`,
         method: "PUT",
       }),
-      invalidatesTags: ["users"],
+      invalidatesTags: [
+        "users",
+        "profileFollowers",
+        "profileFollowing",
+        "getUserById",
+      ],
     }),
   }),
 });
@@ -64,6 +95,9 @@ export const {
   useLogoutMutation,
   useGetAllUserQuery,
   useGetUserByIdQuery,
+  useGetProfilePostsQuery,
+  useGetProfileFollowersQuery,
+  useGetProfileFollowingQuery,
   useUserFollowMutation,
   useUserUnfollowMutation,
 } = userApiSlice;

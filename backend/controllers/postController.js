@@ -93,7 +93,7 @@ const getAllUserPosts = asyncHandler(async (req, res) => {
   const { _id: userId } = req.user;
 
   try {
-    const posts = await Post.find({ user: userId });
+    const posts = await Post.find({ user: userId }).populate("user").sort({updatedAt: -1});
     return res.status(200).send(posts);
   } catch (error) {
     res.status(500);
