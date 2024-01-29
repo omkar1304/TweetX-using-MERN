@@ -9,7 +9,7 @@ import {
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-const FollowCard = ({ user }) => {
+const FollowCard = ({ user, isTab }) => {
   const [isFollowing, SetIsFollowing] = useState(true);
   const { userInfo } = useSelector((store) => store.auth);
   const { data: currentUser } = useGetUserByIdQuery(userInfo?._id);
@@ -38,7 +38,7 @@ const FollowCard = ({ user }) => {
   };
 
   return (
-    <div className="follow-card">
+    <div className={`follow-card ${isTab ? "tab-custom" : ""}`}>
       <div className="user-details--section">
         <img src={Profile} alt="profile" className="profile-image" />
         <div className="user-details">
