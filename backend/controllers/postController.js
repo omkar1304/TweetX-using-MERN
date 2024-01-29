@@ -90,10 +90,11 @@ const deletePost = asyncHandler(async (req, res) => {
 });
 
 const getAllUserPosts = asyncHandler(async (req, res) => {
-  const { _id: userId } = req.user;
+  // const { _id: userId } = req.user;
+  const { profileId } = req.params;
 
   try {
-    const posts = await Post.find({ user: userId }).populate("user").sort({updatedAt: -1});
+    const posts = await Post.find({ user: profileId }).populate("user").sort({updatedAt: -1});
     return res.status(200).send(posts);
   } catch (error) {
     res.status(500);

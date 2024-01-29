@@ -12,8 +12,8 @@ import authenticate from "../middleware/authMiddleware.js";
 const router = express.Router();
 
 /* GET Methods */
-router.get("/", [authenticate], getAllUserPosts);
 router.get("/followingposts", [authenticate], getAllPostsFromFollowing)
+router.get("/profile/:profileId", [authenticate], getAllUserPosts);
 router.get("/:postId", [authenticate], getPostById);
 
 /* POST Methods */
