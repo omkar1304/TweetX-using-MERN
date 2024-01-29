@@ -1,0 +1,11 @@
+.followers-tab--section{
+    margin: 1rem;
+    width: 100rem;
+}
+
+@media screen and (max-width: 1025px) {
+    .followers-tab--section{
+        width: 90rem;
+    }
+}
+

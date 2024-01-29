@@ -1,0 +1,69 @@
+.activity-card {
+  margin-block: 0.5rem;
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.activity-card--tabs {
+  width: 100%;
+  height: 4rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--tab-background-color);
+  border-radius: 0.5rem;
+}
+
+.activity-card--tabs span {
+    margin-inline: 0.5rem;
+  padding: 0.5rem 0.5rem;
+  width: 20rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--text-bold-color);
+  text-align: center;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.activity-card--tabs span::selection {
+  background-color: transparent;
+}
+
+.active-tab {
+  background-color: white;
+}
+
+.tab-section {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 1025px) {
+  .activity-card {
+    width: 65%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .activity-card {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .activity-card {
+    width: 95%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .activity-card {
+    width: 97%;
+  }
+}
