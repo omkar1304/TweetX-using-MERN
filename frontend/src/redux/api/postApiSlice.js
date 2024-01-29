@@ -28,8 +28,8 @@ export const postApiSlice = apiSlice.injectEndpoints({
     }),
 
     getAllUserPosts: builder.query({
-      query: () => ({
-        url: `${POST_URL}`,
+      query: (profileId) => ({
+        url: `${POST_URL}/profile/${profileId}`,
       }),
     }),
 
