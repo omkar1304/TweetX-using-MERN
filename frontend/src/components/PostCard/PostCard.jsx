@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./postcard.css";
+import { Link, useNavigate } from 'react-router-dom'
 
 import Profile from "../../assets/profile.png";
 
 const PostCard = ({ post }) => {
   const { content, updatedAt, user } = post;
   const [timeAgo, setTimeAgo] = useState("");
+  const navigate = useNavigate();
 
   // To update post timing in every 5 seconds
   useEffect(() => {
@@ -48,7 +50,7 @@ const PostCard = ({ post }) => {
         <img src={Profile} alt="profile-image" className="post-card--image" />
       </figure>
       <div className="post-card-detail">
-        <h3>{user.name}</h3>
+      <h3 onClick={() => navigate(`/profile/${user._id}`)}>{user.name}</h3>
         <h5>{timeAgo}</h5>
         <p className="post-card--content">{content}</p>
       </div>

@@ -8,15 +8,17 @@ import {
 } from "../../redux/api/userApiSlice";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom'
 
 const FollowCard = ({ user, isTab }) => {
   const [isFollowing, SetIsFollowing] = useState(true);
   const { userInfo } = useSelector((store) => store.auth);
-  const { data: currentUser } = useGetUserByIdQuery(userInfo?._id);
+  const { data: loggedinUser } = useGetUserByIdQuery(userInfo?._id);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    SetIsFollowing(currentUser?.following?.includes(user._id));
-  }, [currentUser]);
+    SetIsFollowing(loggedinUser?.following?.includes(user._id));
+  }, [loggedinUser]);
 
   const [follow] = useUserFollowMutation();
   const [unfollow] = useUserUnfollowMutation();
@@ -42,7 +44,7 @@ const FollowCard = ({ user, isTab }) => {
       <div className="user-details--section">
         <img src={Profile} alt="profile" className="profile-image" />
         <div className="user-details">
-          <h3 className="user-details--username">{user.name}</h3>
+          <h3 className="user-details--username" onClick={() => navigate(`/profile/${user?._id}`)}>{user.name}</h3>
           <div className="follow-section">
             <p className="user-details--following">
               Following: {user.following.length}
@@ -53,14 +55,16 @@ const FollowCard = ({ user, isTab }) => {
           </div>
         </div>
       </div>
-      <button
-        className={`toggle-button ${
-          isFollowing ? "unfollow-button" : "follow-button"
-        } flex-row-center`}
-        onClick={handleFollowActivity}
-      >
-        {isFollowing ? "Unfollow" : "Follow"}
-      </button>
+      {user._id !== loggedinUser?._id && (
+        <button
+          className={`toggle-button ${
+            isFollowing ? "unfollow-button" : "follow-button"
+          } flex-row-center`}
+          onClick={handleFollowActivity}
+        >
+          {isFollowing ? "Unfollow" : "Follow"}
+        </button>
+      )}
     </div>
   );
 };
