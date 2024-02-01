@@ -49,6 +49,7 @@
   font-size: 1.8rem;
   font-weight: 500;
   color: var(--text-bold-color);
+  cursor: pointer;
 }
 
 .post-card-detail h3::selection {

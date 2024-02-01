@@ -71,6 +71,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         "profileFollowers",
         "profileFollowing",
         "getUserById",
+        "followingPosts"
       ],
     }),
 
@@ -84,6 +85,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
         "profileFollowers",
         "profileFollowing",
         "getUserById",
+        "followingPosts"
       ],
     }),
   }),

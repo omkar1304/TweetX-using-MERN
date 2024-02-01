@@ -41,6 +41,11 @@
   font-size: 2rem;
   font-weight: 500;
   color: var(--text-bold-color);
+  cursor: pointer;
+}
+
+.user-details--username:hover {
+  color: var(--main-color);
 }
 
 .user-details--username::selection {
