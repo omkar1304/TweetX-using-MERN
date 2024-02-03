@@ -6,6 +6,7 @@ export const apiSlice = createApi({
   tagTypes: ["followingPosts", "users", "profileFollowers", "profileFollowing", "getUserById"],
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
+    credentials: 'include',
   }),
   endpoints: () => ({}),
 });
