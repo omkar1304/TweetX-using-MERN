@@ -1,1 +1,1 @@
-export const BACKEND_URL = "https://tweetx-using-mern.onrender.com"
+export const BACKEND_URL = "https://tweetxbackend.onrender.com"
