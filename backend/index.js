@@ -31,7 +31,7 @@ app.use(cors({
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
-app.options('*', cors());
+// app.options('*', cors());
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
