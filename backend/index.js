@@ -21,7 +21,7 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: ["https://tweetxfrontend.vercel.app"],
+  origin: ["https://tweetxfrontend.netlify.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true, 
 }));
