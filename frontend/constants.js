@@ -1,1 +1,1 @@
-export const BACKEND_URL = "https://tweetxbackend.vercel.app"
+export const BACKEND_URL = "https://tweetx-using-mern.onrender.com"
