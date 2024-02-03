@@ -19,7 +19,7 @@ const app = express();
 // };
 
 // Enable CORS for all routes
-app.options('*', cors());
+// app.options('*', cors());
 
 app.use(express.json());
 app.use(cookieParser());
