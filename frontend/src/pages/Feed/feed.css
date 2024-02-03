@@ -3,6 +3,10 @@
   padding-inline: 18rem;
 }
 
+.create-post--button{
+  width: fit-content;
+}
+
 .custom-main-button-class {
   display: flex;
   justify-content: center;

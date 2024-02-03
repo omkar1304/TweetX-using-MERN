@@ -4,7 +4,7 @@
   align-items: center;
 }
 
-.form-section {
+.register-form-section {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -15,28 +15,35 @@
   margin-block: 2rem;
 }
 
-.custom-auth-button-class {
-  margin-block: 1.5rem;
-}
 
-.form-heading {
-  margin: 5rem 0rem;
+.form-heading--regitser {
+  margin: 3rem 0rem;
   font-size: 3rem;
   font-weight: 600;
   color: var(--text-bold-color);
 }
 
-.form-section form {
+.register-form-section form {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  gap: 3.5rem;
+  gap: 3rem;
 }
 
-.form-section form input {
+.form-image--label img{
+  width: 12rem;
+  height: 12rem;
+  border-radius: 50%;
+}
+
+#profile{
+  display: none;
+}
+
+.register-form-section form input {
   padding: 2rem;
   width: 40rem;
-  height: 6rem;
+  height: 5.5rem;
   border: none;
   border-radius: 0.7rem;
   font-size: 1.5rem;
@@ -44,12 +51,40 @@
   background-color: var(--input-background-color);
 }
 
-.form-section form input:focus {
+.register-form-section form input:focus {
   outline-color: var(--main-color);
 }
 
 .custom-main-button-class {
   align-self: end;
+  margin-top: 0rem !important;
+}
+
+.register-link-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.login-link{
+  text-decoration: none ;
+  color: var(--main-color);
+  font-size: 1.2rem;
+}
+
+.login-link::selection{
+  background-color: var(--secondary-main-color);
+  color: white;
+}
+
+.login-link span{
+  font-size: 1.2rem;
+}
+
+.login-link span::selection{
+  background-color: var(--secondary-main-color);
+  color: white;
 }
 
 .form-image {
@@ -58,14 +93,21 @@
   object-fit: 100% 100%;
 }
 
+
+
 /* for small-laptop devices */
 @media screen and (max-width: 1290px) {
   .custom-auth-button-class {
     margin-block: 1.2rem;
   }
-  .form-section form input {
+
+  .form-heading--regitser {
+    margin: 1rem 0rem;
+    font-size: 2rem;
+  }
+  .register-form-section form input {
     width: 35rem;
-    height: 5.7rem;
+    height: 5rem;
   }
   .form-image {
     width: 60rem;
@@ -74,10 +116,17 @@
   }
 }
 
+
 @media screen and (max-width: 1000px) {
-  .form-section form input {
+
+  .form-heading--regitser {
+    margin: 1rem 0rem;
+    font-size: 1.8rem;
+  }
+
+  .register-form-section form input {
     width: 33rem;
-    height: 5.5rem;
+    height: 5rem;
   }
   .form-image {
     width: 50rem;
@@ -91,26 +140,50 @@
   .custom-auth-button-class {
     margin-block: 1rem;
   }
-  .form-section {
+  .register-form-section {
     width: 100%;
   }
   .form-heading {
     width: 100%;
     margin: 4rem 0rem;
+    
     text-align: center;
   }
-  .form-section form {
+
+  .form-heading--regitser{
+    margin: 1rem 0rem;
+    width: 100%;
+    font-size: 2.5rem;
+    text-align: center;
+  }
+
+  .register-form-section form {
     width: 100%;
     justify-content: center;
     align-items: center;
-    gap: 3.5rem;
+    gap: 2.8rem;
   }
-  .form-section form input {
+  .register-form-section form input {
     width: 45rem;
-    height: 6rem;
+    height: 5rem;
   }
   .custom-main-button-class {
     align-self: center;
+  }
+  .register-link-section{
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1rem;
+  }
+  
+  .login-link{
+    text-decoration: none ;
+    color: var(--main-color);
+    font-size: 1.2rem;
+  }
+  
+  .login-link span{
+    font-size: 1.2rem;
   }
   .form-image {
     display: none;
@@ -119,7 +192,10 @@
 
 /* for small devices */
 @media screen and (max-width: 480px) {
-  .form-section form input {
+  .form-heading--regitser{
+    font-size: 2.3rem;
+  }
+  .register-form-section form input {
     width: 30rem;
     height: 5rem;
   }

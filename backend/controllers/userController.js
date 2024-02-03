@@ -5,8 +5,9 @@ import asyncHandler from "../middleware/asyncHandler.js";
 
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
+  const filename = req?.file?.filename ? req.file.filename : null;
 
-  if (!name || !email || !password) {
+  if (!name || !email || !password ) {
     throw new Error("All fields are required!");
   }
 
@@ -22,6 +23,7 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password: hashPassword,
+    image: filename,
   });
 
   try {
@@ -102,38 +104,44 @@ const getUserById = asyncHandler(async (req, res) => {
 const getProfilePosts = asyncHandler(async (req, res) => {
   const { profileId } = req.params;
 
-  const profile = await User.findById(profileId).select("posts").populate("posts")
+  const profile = await User.findById(profileId)
+    .select("posts")
+    .populate("posts");
   if (profile) {
     return res.status(200).json(profile.posts);
   } else {
     res.status(404);
     throw new Error("User doesn't exist");
   }
-})
+});
 
 const getProfileFollowers = asyncHandler(async (req, res) => {
   const { profileId } = req.params;
 
-  const profile = await User.findById(profileId).populate("followers").select("followers")
+  const profile = await User.findById(profileId)
+    .populate("followers")
+    .select("followers");
   if (profile) {
     return res.status(200).json(profile.followers);
   } else {
     res.status(404);
     throw new Error("User doesn't exist");
   }
-})
+});
 
 const getProfileFollowing = asyncHandler(async (req, res) => {
   const { profileId } = req.params;
 
-  const profile = await User.findById(profileId).populate("following").select("following")
+  const profile = await User.findById(profileId)
+    .populate("following")
+    .select("following");
   if (profile) {
     return res.status(200).json(profile.following);
   } else {
     res.status(404);
     throw new Error("User doesn't exist");
   }
-})
+});
 
 const userFollow = asyncHandler(async (req, res) => {
   const { followingId } = req.params;

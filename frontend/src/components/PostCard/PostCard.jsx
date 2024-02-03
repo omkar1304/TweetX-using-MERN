@@ -1,19 +1,34 @@
 import React, { useEffect, useState } from "react";
 import "./postcard.css";
-import { Link, useNavigate } from 'react-router-dom'
-
+import { Link, useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../../../constants";
+import { BsThreeDots } from "react-icons/bs";
 import Profile from "../../assets/profile.png";
+import { useSelector } from "react-redux";
+import { MdOutlineModeEditOutline } from "react-icons/md";
+import { FiTrash } from "react-icons/fi";
+import toast from "react-hot-toast";
+import {
+  useUpdatePostMutation,
+  useDeletePostMutation,
+} from "../../redux/api/postApiSlice";
 
 const PostCard = ({ post }) => {
-  const { content, updatedAt, user } = post;
+  const { content, updatedAt, createdAt, user } = post;
   const [timeAgo, setTimeAgo] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+  const [contentData, setContentData] = useState(content);
   const navigate = useNavigate();
+  const { userInfo } = useSelector((store) => store.auth);
+  const [ deletePost ] = useDeletePostMutation();
+  const [ updatePost ] = useUpdatePostMutation();
+  const imageURL = `${BACKEND_URL}/uploads/${user?.image}`;
 
   // To update post timing in every 5 seconds
   useEffect(() => {
     const calculateTimeAgo = () => {
       const currentDate = new Date();
-      const postDate = new Date(updatedAt);
+      const postDate = new Date(createdAt);
 
       const timeDifferenceInSeconds = Math.floor(
         (currentDate - postDate) / 1000
@@ -42,17 +57,73 @@ const PostCard = ({ post }) => {
     const intervalId = setInterval(calculateTimeAgo, 5000);
 
     return () => clearInterval(intervalId);
-  }, [updatedAt]);
+  }, [createdAt]);
+
+  const handleEditing = (e) => {
+    e.stopPropagation();
+    setIsEditing(!isEditing);
+  };
+
+  const handlePostDelete = async () => {
+    try {
+      await deletePost(post._id).unwrap();
+      toast.success("Post has been deleted!");
+    } catch (error) {
+      console.error(error);
+      toast.error(error?.data?.message || error?.data);
+    }
+  };
+
+  
+  const handlePostUpdate = async () => {
+    
+    try {
+      await updatePost({postId: post?._id, content:contentData}).unwrap();
+      setIsEditing(false)
+      toast.success("Post has been updated!");
+    } catch (error) {
+      console.error(error);
+      toast.error(error?.data?.message || error?.data);
+    }
+  }
 
   return (
     <div className="post-card--section scale-up-center">
       <figure>
-        <img src={Profile} alt="profile-image" className="post-card--image" />
+        <img
+          src={user?.image ? imageURL : Profile}
+          alt="profile-image"
+          className="post-card--image"
+        />
       </figure>
       <div className="post-card-detail">
-      <h3 onClick={() => navigate(`/profile/${user._id}`)}>{user.name}</h3>
+        {user?._id === userInfo?._id && (
+          <div className="options-icon">
+            {createdAt !== updatedAt && (<p className="edit-text">Edited</p>)}
+            <MdOutlineModeEditOutline
+              className="options-icons--edit"
+              onClick={handleEditing}
+            />
+            <FiTrash
+              className="options-icons--delete"
+              onClick={handlePostDelete}
+            />
+          </div>
+        )}
+        <h3 onClick={() => navigate(`/profile/${user._id}`)}>{user.name}</h3>
         <h5>{timeAgo}</h5>
-        <p className="post-card--content">{content}</p>
+        {isEditing ? (
+          <div className="update-section">
+            <textarea
+              value={contentData}
+              onChange={(e) => setContentData(e.target.value)}
+              className="update-content"
+            />
+            <button className="update-button" onClick={handlePostUpdate}>Update</button>
+          </div>
+        ) : (
+          <p className="post-card--content">{content}</p>
+        )}
       </div>
     </div>
   );

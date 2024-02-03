@@ -1,7 +1,7 @@
 import "./profilecard.css";
 import Profile from "../../assets/profile.png";
 import toast from "react-hot-toast";
-
+import { BACKEND_URL } from "../../../constants";
 import { useNavigate, useParams } from "react-router-dom";
 import { useGetUserByIdQuery, useLogoutMutation } from "../../redux/api/userApiSlice";
 import { unSetCredentials } from "../../redux/features/authSlice";
@@ -17,6 +17,7 @@ const ProfileCard = () => {
   const { data: userProfile } = useGetUserByIdQuery(profileId);
   const { userInfo } = useSelector((store) => store.auth);
   const [ logout ] = useLogoutMutation();
+  const imageURL = `${BACKEND_URL}/uploads/${userProfile?.image}`
 
   const handleLogout = async () => {
     try {
@@ -32,7 +33,7 @@ const ProfileCard = () => {
 
   return (
     <div className="profile-card">
-      <img src={Profile} alt="profile-image" className="profle-image" />
+      <img src={userProfile?.image ? imageURL : Profile} alt="profile-image" className="profle-image" />
       <div className="profile-details">
        {userInfo?._id === userProfile?._id && (
          <IoIosLogOut className="logout-icon" onClick={handleLogout}/>

@@ -31,8 +31,10 @@ const createPost = asyncHandler(async (req, res) => {
 
 const updatePost = asyncHandler(async (req, res) => {
   const { _id: userId } = req.user;
-  const { content } = req.body;
+  const {content} = req.body;
+
   const { postId } = req.params;
+
 
   if (!content) {
     throw new Error("Please write something to update in post!");
@@ -134,7 +136,7 @@ const getAllPostsFromFollowing = asyncHandler(async (req, res) => {
     const userIds = [userId, ...currentUser.following];
 
     const posts = await Post.find({ user: { $in: userIds } })
-      .sort({ updatedAt: -1 })
+      .sort({ createdAt: -1 })
       .populate("user")
 
     return res.status(200).json(posts);

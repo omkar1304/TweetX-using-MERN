@@ -1,8 +1,6 @@
 import "./signup.css";
-
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-
 import AuthImage from "../../assets/auth.png";
 import Brand from "../../components/Brand/Brand";
 import AuthButton from "../../components/AuthButton/AuthButton";
@@ -13,6 +11,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCredentials } from "../../redux/features/authSlice";
 import CustomToaster from "../../components/CustomToaster/CustomToaster";
 import capitalizeName from "../../utils/capitalizeName";
+import dataURItoBlob from "../../utils/dataURItoBlob";
+import Profile from "../../assets/profile.png";
 
 const SignUp = () => {
   const [data, setData] = useState({
@@ -21,6 +21,7 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
+  const [selectedImage, setSelectedImage] = useState(null);
   const [register] = useRegisterMutation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -39,6 +40,21 @@ const SignUp = () => {
     setData({ ...data, [name]: value });
   };
 
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setSelectedImage({
+          dataURL: reader.result,
+          name: file.name, 
+        });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -47,10 +63,21 @@ const SignUp = () => {
       return null;
     }
 
-    data.name = capitalizeName(data.name)
+    data.name = capitalizeName(data.name);
 
     try {
-      const res = await register(data).unwrap();
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("password", data.password);
+      if (selectedImage) {
+        formData.append(
+          "image",
+          dataURItoBlob(selectedImage.dataURL),
+          selectedImage.name
+        );
+      }
+      const res = await register(formData).unwrap();
       dispatch(setCredentials(res));
       toast.success(`Welcome to TweetX ${res?.name}`);
       navigate("/");
@@ -64,15 +91,25 @@ const SignUp = () => {
     <div className="container">
       <CustomToaster />
       <div className="register-section">
-        <div className="form-section">
+        <div className="register-form-section">
           <div className="brand-div">
             <Brand />
           </div>
-          <Link to="/login">
-            <AuthButton value="Login" className="custom-auth-button-class" />
-          </Link>
-          <h2 className="form-heading">Create Account</h2>
+          <h2 className="form-heading--regitser">Create Account</h2>
           <form onSubmit={handleFormSubmit}>
+            <label htmlFor="profile" className="form-image--label">
+              <img
+                src={selectedImage?.dataURL || Profile}
+                alt="profile-image"
+              />
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              name="image"
+              id="profile"
+            />
             <input
               type="text"
               placeholder="Name"
@@ -101,7 +138,10 @@ const SignUp = () => {
               value={data.confirmPassword}
               onChange={onChangeData}
             />
+            <div className="register-link-section">
+            <Link className="login-link" to="/login">Already have an account?<span> Sign in</span></Link>
             <MainButton value="Sign up" className="custom-main-button-class" />
+            </div>
           </form>
         </div>
         <img src={AuthImage} alt="auth-image" className="form-image" />

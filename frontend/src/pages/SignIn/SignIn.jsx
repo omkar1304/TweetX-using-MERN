@@ -65,18 +65,12 @@ const SignIn = () => {
   return (
     <div className="container">
       <CustomToaster />
-      <div className="login-section">
-        <div className="form-section">
-          <div className="brand-div">
+      <div className="brand-div">
             <Brand />
           </div>
-          <Link to="/register">
-            <AuthButton
-              value="Create Account"
-              className="custom-auth-button-class"
-            />
-          </Link>
-          <h2 className="form-heading">Login</h2>
+      <div className="login-section">
+        <div className="form-section">
+          <h2 className="form-heading--login">Login</h2>
           <form onSubmit={handleFormSubmit}>
             <input
               type="email"
@@ -108,11 +102,11 @@ const SignIn = () => {
                 />
               )}
             </div>
-            <MainButton value="Login" className="custom-main-button-class" />
+            <div className="login-link-section">
+              <Link className="register-link" to="/register">Don't have an account?<span> Sign up</span></Link>
+              <MainButton value="Sign up" className="custom-main-button-class" />
+            </div>
           </form>
-        </div>
-        <div>
-          <img src={AuthImage} alt="auth-image" className="form-image" />
         </div>
       </div>
     </div>

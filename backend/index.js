@@ -15,7 +15,6 @@ connectDB();
 const app = express();
 
 const corsOptions = {
-  // origin: 'http://localhost:5173',
   credentials: true, // Enable credentials (cookies)
 };
 
@@ -27,6 +26,10 @@ app.use(morgan("dev"));
 
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
+
+// Serving static files 👇
+app.use('/uploads', express.static('uploads'));
+
 
 app.get("/", (req, res) => {
   return res.status(200).send("Working!");

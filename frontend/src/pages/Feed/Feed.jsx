@@ -45,7 +45,7 @@ const Feed = () => {
             </p>
           </div>
         ) : (
-          posts.map((post, index) => {
+          posts?.map((post, index) => {
             return <PostCard key={index} post={post} />;
           })
         )}

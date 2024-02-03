@@ -10,20 +10,27 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: start;
+  gap: 2rem;
 }
 
 .brand-div {
   margin-block: 2rem;
 }
-.custom-auth-button-class {
-  margin-block: 1.5rem;
-}
 
-.form-heading {
-  margin: 5rem 0rem;
+.form-heading--login {
+  margin: 0rem 0rem;
   font-size: 3rem;
   font-weight: 600;
   color: var(--text-bold-color);
+}
+
+.form-section {
+  width: 100%;
+  height: 50rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .form-section form {
@@ -62,14 +69,34 @@
 }
 
 .custom-main-button-class {
-  align-self: end;
+  align-self: center;
 }
 
-.form-image {
-  margin-top: 15rem;
-  width: 65rem;
-  height: 48rem;
-  object-fit: 100% 100%;
+.login-link-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.register-link {
+  text-decoration: none;
+  color: var(--main-color);
+  font-size: 1.2rem;
+}
+
+.register-link::selection{
+  background-color: var(--secondary-main-color);
+  color: white;
+}
+
+.register-link span {
+  font-size: 1.2rem;
+}
+
+.register-link span::selection{
+  background-color: var(--secondary-main-color);
+  color: white;
 }
 
 /* for small-laptop devices */
@@ -81,11 +108,7 @@
   .icon-eye {
     font-size: 2.2rem;
   }
-  .form-image {
-    width: 60rem;
-    height: 42rem;
-    object-fit: 100% 100%;
-  }
+  
 }
 
 @media screen and (max-width: 1000px) {
@@ -111,7 +134,7 @@
   .form-section {
     width: 100%;
   }
-  .form-heading {
+  .form-heading--login {
     width: 100%;
     margin: 4rem 0rem;
     text-align: center;
@@ -131,6 +154,10 @@
   }
   .custom-main-button-class {
     align-self: center;
+  }
+  .login-link-section{
+    flex-direction: column-reverse;
+    gap: 1.2rem;
   }
   .form-image {
     display: none;

@@ -9,6 +9,10 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: [
+        "users",
+        "followingPosts",
+      ],
     }),
 
     login: builder.mutation({
@@ -17,6 +21,10 @@ export const userApiSlice = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: [
+        "users",
+        "followingPosts",
+      ],
     }),
 
     logout: builder.mutation({
@@ -28,7 +36,7 @@ export const userApiSlice = apiSlice.injectEndpoints({
 
     getAllUser: builder.query({
       query: () => ({
-        url: `${USER_URL}?page`,
+        url: `${USER_URL}`,
         credentials: "include",
       }),
       providesTags: ["users"],

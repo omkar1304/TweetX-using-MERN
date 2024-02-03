@@ -59,6 +59,7 @@ const CreatePostModal = ({ onCloseModal, setPosts }) => {
             value={content}
             onChange={(e) => setContent(e.target.value)}
           ></textarea>
+          <br />
           <MainButton value="Post" className="custom-main-button-class" />
         </form>
       </div>

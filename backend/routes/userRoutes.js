@@ -1,4 +1,5 @@
 import express from "express";
+import upload from "../middleware/multer.js";
 import {
   registerUser,
   loginUser,
@@ -23,7 +24,7 @@ router.get("/following/:profileId", [authenticate], getProfileFollowing);
 router.get("/:userId", [authenticate], getUserById);
 
 /* POST Methods */
-router.post("/register", registerUser);
+router.post("/register", upload.single("image"), registerUser);
 router.post("/login", loginUser);
 router.post("/logout", logoutUser);
 

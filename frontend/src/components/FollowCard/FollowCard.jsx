@@ -9,6 +9,7 @@ import {
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom'
+import { BACKEND_URL } from "../../../constants";
 
 const FollowCard = ({ user, isTab }) => {
   const [isFollowing, SetIsFollowing] = useState(true);
@@ -22,6 +23,8 @@ const FollowCard = ({ user, isTab }) => {
 
   const [follow] = useUserFollowMutation();
   const [unfollow] = useUserUnfollowMutation();
+
+  const imageURL = `${BACKEND_URL}/uploads/${user?.image}`
 
   const handleFollowActivity = async () => {
     try {
@@ -42,7 +45,7 @@ const FollowCard = ({ user, isTab }) => {
   return (
     <div className={`follow-card ${isTab ? "tab-custom" : ""}`}>
       <div className="user-details--section">
-        <img src={Profile} alt="profile" className="profile-image" />
+        <img src={ user?.image ? imageURL : Profile } alt="profile" className="profile-image" />
         <div className="user-details">
           <h3 className="user-details--username" onClick={() => navigate(`/profile/${user?._id}`)}>{user.name}</h3>
           <div className="follow-section">
