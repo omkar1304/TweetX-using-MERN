@@ -18,6 +18,9 @@ const app = express();
 //   credentials: true, // Enable credentials (cookies)
 // };
 
+// Enable CORS for all routes
+app.options('*', cors());
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
