@@ -14,24 +14,17 @@ connectDB();
 
 const app = express();
 
-// const corsOptions = {
-//   credentials: true, // Enable credentials (cookies)
-// };
-
-// Enable CORS for all routes
-// app.options('*', cors());
-
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: ["https://tweetx-using-mern.onrender.com"],
+  origin: ["https://tweetxbackend.onrender.com"],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   credentials: true, 
 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
-// app.options('*', cors());
+
 app.use("/api/users", userRoutes);
 app.use("/api/posts", postRoutes);
 
