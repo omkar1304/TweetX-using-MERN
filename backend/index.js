@@ -23,7 +23,7 @@ app.use(cookieParser());
 app.use(cors({
   origin: ["https://tweetxfrontend.vercel.app"],
   methods: ["GET", "POST", "PUT", "DELETE"],
-  Credential: true
+  credentials: true, 
 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
