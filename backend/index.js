@@ -14,13 +14,17 @@ connectDB();
 
 const app = express();
 
-const corsOptions = {
-  credentials: true, // Enable credentials (cookies)
-};
+// const corsOptions = {
+//   credentials: true, // Enable credentials (cookies)
+// };
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors(corsOptions));
+app.use(cors({
+  origin: ["https://tweetxfrontend.vercel.app"],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  Credential: true
+}));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
