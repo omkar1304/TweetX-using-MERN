@@ -4,9 +4,6 @@
 
 Tweetx is a comprehensive full-stack MERN (MongoDB, Express.js, React, Node.js) application designed to empower users in expressing and sharing their thoughts seamlessly. The platform incorporates robust user authentication through JWT, facilitating secure post creation, user following functionality, and dynamic data fetching powered by Redux Toolkit Query. Offering a dynamic and engaging social experience, Tweetx aims to foster meaningful connections through its feature-rich environment.
 
-## Live Project Link
-
-The project is hosted on Vercel and can be accessed using the following link - https://tweetxfrontend.netlify.app
 
 ## Features
 
